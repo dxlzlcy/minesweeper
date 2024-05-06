@@ -12,6 +12,14 @@ var gameOver = false;
 
 window.onload=function(){
     startGame();
+    flag_button_listen();
+}
+
+function flag_button_listen(){
+    document.getElementById('flag-button').addEventListener('click',function(){
+        flagEnabled = 1-flagEnabled;
+        this.style.backgroundColor = flagEnabled?'darkgray':'white';
+    })
 }
 
 function setMines(){
@@ -32,6 +40,17 @@ function setMines(){
 
     }
 
+    document.getElementById('start').addEventListener('click',()=>{
+        minesLocation = [];
+        gameOver=false;
+        tilesClicked = 0;
+        board = [];
+        document.getElementById('board').innerHTML = '';
+        minesCount = parseInt(totalMineCount.value);
+        log.innerHTML = minesCount;
+        startGame();
+
+    })
 
 
 
@@ -55,10 +74,7 @@ function startGame(){
         board.push(row);
     }
 
-    document.getElementById('flag-button').addEventListener('click',function(){
-        flagEnabled = 1-flagEnabled;
-        this.style.backgroundColor = flagEnabled?'darkgray':'white';
-    })
+
 
 }
 
